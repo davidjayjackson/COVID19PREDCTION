@@ -1,7 +1,7 @@
 ---
-title: 'GGPLOT2: Us in a Nutshell'
+title: 'US COVID-19 Prediction'
 author: "David Jackson"
-date: "10/31/2020"
+date: "11/07/2020"
 output: 
   html_document: 
     fig_width: 10
@@ -81,6 +81,7 @@ mean((df1death$Deaths))
 * Revised US COVID19 Deaths: 389,087 by Feb. 1, 2021 (Updated Oct. 15,2020)
 * Revised US COVID19 Deaths: 385,611 by Feb. 1, 2021 (Updated Oct. 22, 2020)
 * Revised US COVID19 Deaths: 399,163 by Feb. 1, 2021 (Updated Oct. 29, 2020)
+* Revised US COVID19 Deaths: 399,163 by Feb. 1, 2021 (Updated Nov. 07, 2020)
 
 #### US COVID-19 Deaths  Guesstimate as of Oct. 17, 2020
 * Oct. 17, 2020 Fixed math error for average US Deaths per day
@@ -109,8 +110,8 @@ ggplot(df1death) +geom_line(aes(x=Reported,y=Cases),col="red") +
 ```{r}
 ## 394,693 by Feb. 1, 2021
 ##
-(399163 - sum(df1death$Deaths)) / 94 # Feb 1, 2021
-sum(df1death$Deaths) + (mean((df1death$Deaths)) * 94) ## Feb.1 , 2021(389087)
+(399163 - sum(df1death$Deaths)) / 88 # Feb 1, 2021
+sum(df1death$Deaths) + (mean((df1death$Deaths)) * 88) ## Feb.1 , 2021(389087)
 ##
 ## 
 ```
@@ -127,7 +128,7 @@ ggplot(df1death) +geom_line(aes(x=Reported,y=Deaths),lwd=2,col="blue") +
   labs(title="US Daily Total Deaths(2020-03-01 - 2020-10-31)",
        subtitle="Daily Avg (Red:934);Feb 1(Grenn: 1802/399163))"
        ,x="Date Reported",y="Daily Deaths") +
-  geom_hline(yintercept=934,lwd=1.5,col="red") +
+  geom_hline(yintercept=933,lwd=1.5,col="red") +
     geom_hline(yintercept=1802,lwd=1.5,col="green")
 
 ```
@@ -140,10 +141,10 @@ ggplot(df1death) +geom_smooth(aes(x=Reported,y=Deaths,col="Loess"),span=0.1) +
   scale_y_continuous(labels = comma) +
    theme(axis.text.x=element_text(angle =- 45, vjust = 0.25)) +
   labs(title="US Daily Total Deaths(2020-03-01 - 2020-10-31)",
-       subtitle="Daily Avg (Red:942);Feb 1(Green: 1802/399163))"
+       subtitle="Daily Avg (Red:933);Feb 1(Green: 1853/399163))"
        ,x="Date Reported",y="Daily Deaths") +
-  geom_hline(yintercept=1802,lwd=1.5,col="green") +
-  geom_hline(yintercept=942,lwd=1.5,col="red") 
+  geom_hline(yintercept=1853,lwd=1.5,col="green") +
+  geom_hline(yintercept=933,lwd=1.5,col="red") 
  # geom_hline(yintercept=1340,lwd=1.5,col="blue") +
   
 
