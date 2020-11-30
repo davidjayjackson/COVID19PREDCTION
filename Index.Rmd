@@ -1,7 +1,7 @@
 ---
 title: 'US COVID-19 Prediction'
 author: "David Jackson"
-date: "11/21/2020"
+date: "11/28/2020"
 output: 
   html_document: 
     fig_width: 10
@@ -40,38 +40,18 @@ df1death <- df1 %>% filter(Reported>="2020-02-29")
 
 ```
 
-### Plots of Cumulative Cases and Deaths
-#### Source: New York Times
+### Plots of Total Cases and Deaths and Average Deaths
+#### Source: European CDPC
 
 ```{r,echo=FALSE}
-cumm_cases <-ggplot(df) +geom_line(aes(x=date,y=confirmed),lwd=3,col="red") + 
-    scale_x_date(date_breaks = "1 month") +
-  scale_y_continuous(labels = comma) +
-   theme(axis.text.x=element_text(angle =- 45, vjust = 0.5)) +
-  labs(title="US Cumulative Total Cases",
-       x="Date Reported",y="Cumulative Cases") 
-```
-```{r}
-cumm_deaths <-ggplot(df) +geom_line(aes(x=date,y=deaths),lwd=3,col="blue") + 
-    scale_x_date(date_breaks = "1 month") +
-  scale_y_continuous(labels = comma) +
-   theme(axis.text.x=element_text(angle =- 45, vjust = 0.5)) +
-  labs(title="US Cumulative Total Deaths",x="Date Reported",y="Cumulative Deaths")
-ggplotly(cumm_cases)
-ggplotly(cumm_deaths)
+mean((df1death$Deaths))
+sum(df1death$Deaths)
+sum(df1$Cases)
 ```
 
 ## GGPLOt2 Plots of Daily Deaths and Cases
 #### Source: European CDPC
-
-
-#### Average US Covid-19 Deaths/day
-
-```{r}
-mean((df1death$Deaths))
-```
-
-### Washington University
+### Model/Projection: Washington University
 #### Institute for Health Metrics and Evaluation
 * "Daily deaths is the best indicator of the progression of the pandemic, although there is generally a 17-21 day lag between infection and deaths.
 
@@ -84,13 +64,14 @@ mean((df1death$Deaths))
 * Revised US COVID19 Deaths: 399,163 by Feb. 1, 2021 (Updated Nov. 07, 2020)
 * Revised US COVID19 Deaths: 438,941 by Mar. 1, 2021 (Updated Nov. 14, 2020)
 * Revised US COVID19 Deaths: 470,974 by Mar. 1, 2021 (Updated Nov. 19, 2020)
+* Revised US COVID19 Deaths: 470,974 by Mar. 1, 2021 (Updated Nov. 28, 2020)
 
 #### US COVID-19 Deaths  Guesstimate as of Oct. 17, 2020
 * Oct. 17, 2020 Fixed math error for average US Deaths per day
 * Dec. 15,2020 WU IHME Model.
 * My Projections = +/- 5%
 * Nov 1,  2020 = 233,706 : Actual: 229,672
-* Dec.1,  2020 = 261,895 : Range: 248800 - 274989
+* Dec.1,  2020 = 261,895 : Range: 248800 - 274989( Actual 266873)
 * Jan.1,  2021 = 291151  : Range: 276593 - 305708
 * Feb. 1, 2021 = 317,482 : Range: 301607 - 333356
 * Mar, 1 2021 = 319528
@@ -107,14 +88,26 @@ ggplot(df1death) +geom_line(aes(x=Reported,y=Cases),col="red") +
 ```
 
 
+### US COVID19 Projected Deaths(363,269): by  Jan. 1, 2021
+
+
+```{r}
+## 394,693 by Feb. 1, 2021
+##
+(363269 - sum(df1death$Deaths)) / 33 # Jan 1, 2021
+sum(df1death$Deaths) + (mean((df1death$Deaths)) * 33) ## Feb.1 , 2021(389087)
+##
+## 
+```
+
 ### US COVID19 Projected Deaths: by  Feb. 1, 2021
 
 
 ```{r}
 ## 394,693 by Feb. 1, 2021
 ##
-(399163 - sum(df1death$Deaths)) / 73 # Feb 1, 2021
-sum(df1death$Deaths) + (mean((df1death$Deaths)) * 80) ## Feb.1 , 2021(389087)
+(399163 - sum(df1death$Deaths)) / 64 # Feb 1, 2021
+sum(df1death$Deaths) + (mean((df1death$Deaths)) * 64) ## Feb.1 , 2021(389087)
 ##
 ## 
 ```
@@ -129,10 +122,10 @@ ggplot(df1death) +geom_line(aes(x=Reported,y=Deaths),lwd=2,col="blue") +
   scale_y_continuous(labels = comma) +
    theme(axis.text.x=element_text(angle =- 45, vjust = 0.5)) +
   labs(title="US Daily Total Deaths(2020-03-01 - 2020-11-21)",
-       subtitle="Daily Avg (Red:952);Feb 1(Grenn: 1935/399163))"
+       subtitle="Daily Avg (Red:967);Feb 1(Grenn: 2034/399163))"
        ,x="Date Reported",y="Daily Deaths") +
-  geom_hline(yintercept=952,lwd=1.5,col="red") +
-    geom_hline(yintercept=1982,lwd=1.5,col="green")
+  geom_hline(yintercept=967,lwd=1.5,col="red") +
+    geom_hline(yintercept=2034,lwd=1.5,col="green")
 
 ```
 
@@ -141,8 +134,8 @@ ggplot(df1death) +geom_line(aes(x=Reported,y=Deaths),lwd=2,col="blue") +
 ```{r}
 ## 394,693 by Mar h. 1, 2021
 ##
-(438941 - sum(df1death$Deaths)) / 101  # Mar. 1, 2021
-sum(df1death$Deaths) + (mean((df1death$Deaths)) * 101) ## Feb.1 , 2021(389087)
+(438941 - sum(df1death$Deaths)) / 92  # Mar. 1, 2021
+sum(df1death$Deaths) + (mean((df1death$Deaths)) * 92) ## Feb.1 , 2021(389087)
 ##
 ## 
 ```
@@ -152,10 +145,10 @@ ggplot(df1death) +geom_line(aes(x=Reported,y=Deaths),lwd=2,col="blue") +
   scale_y_continuous(labels = comma) +
    theme(axis.text.x=element_text(angle =- 45, vjust = 0.5)) +
   labs(title="US Daily Total Deaths(2020-03-01 - 2020-10-31)",
-       subtitle="Daily Avg (Red:952);Mar. 1(Grenn: 1801/399163))"
+       subtitle="Daily Avg (Red:967);Mar. 1(Grenn: 1853/399163))"
        ,x="Date Reported",y="Daily Deaths") +
-  geom_hline(yintercept=952,lwd=1.5,col="red") +
-    geom_hline(yintercept=1827,lwd=1.5,col="green")
+  geom_hline(yintercept=967,lwd=1.5,col="red") +
+    geom_hline(yintercept=1853,lwd=1.5,col="green")
 
 ```
 
