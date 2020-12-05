@@ -67,12 +67,15 @@ df2death <- df2 %>% filter(Reported>="2020-02-29")
 ```{r}
 df2death$MA7 <- movingAverage(df2death$DEATHS,7,centered=TRUE)
 mean((df2$DEATHS),na.rm = TRUE)
+sum((df2$DEATHS),na.rm = TRUE)
 ```
 
 ### Washington University
 #### Institute for Health Metrics and Evaluation
 * "Daily deaths is the best indicator of the progression of the pandemic, although there is generally a 17-21 day lag between infection and deaths.
 
+* Revised US COVID19 Deaths: 300,000 by Dec. 1, 2021 (Updated Aug. 6, 2020)
+* Revised US COVID19 Deaths: 410,000 by Jan. 1, 2021 (Updated Sept. 5, 2020)
 * Revised US COVID19 Deaths: 363,269 by Jan. 1, 2021 (Updated Oct. 2, 2020)
 * Revised US COVID19 Deaths: 363,269 by Feb. 1, 2021 (Updated Oct. 9, 2020)
 * Revised US COVID19 Deaths: 394,693 by Feb. 1, 2021 (Updated Oct. 10, 2020)
