@@ -58,7 +58,7 @@ sum((df2$new_deaths),na.rm = TRUE)
 
 * Revised US COVID19 Deaths: 300,000 by Dec. 1, 2021 (Updated Aug. 6, 2020)
 * Revised US COVID19 Deaths: 410,000 by Jan. 1, 2021 (Updated Sept. 5, 2020)
-* Revised US COVID19 Deaths: 363,269 by Jan. 1, 2021 (Updated Oct. 2, 2020)
+* **Revised US COVID19 Deaths: 363,269 by Jan. 1, 2021 (Updated Oct. 2, 2020)**
 * Revised US COVID19 Deaths: 363,269 by Feb. 1, 2021 (Updated Oct. 9, 2020)
 * Revised US COVID19 Deaths: 394,693 by Feb. 1, 2021 (Updated Oct. 10, 2020)
 * Revised US COVID19 Deaths: 389,087 by Feb. 1, 2021 (Updated Oct. 15,2020)
@@ -69,7 +69,7 @@ sum((df2$new_deaths),na.rm = TRUE)
 * Revised US COVID19 Deaths: 470,974 by Mar. 1, 2021 (Updated Nov. 19, 2020)
 * Revised US COVID19 Deaths: 538,893 by Apr. 1, 2021 (Updated Dec. 03, 2020)
 * Revised US COVID19 Deaths: 502,256 by Apr. 1, 2021 (Updated Dec. 10, 2020)
-* **Revised US COVID19 Deaths: 561,669 by Apr.1, 2021 (Updated Dec. 17, 2020)**
+* Revised US COVID19 Deaths: 561,669 by Apr.1, 2021 (Updated Dec. 17, 2020)
 
 #### US COVID-19 Deaths  Guesstimate as of Oct. 17, 2020
 
