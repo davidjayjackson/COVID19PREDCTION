@@ -64,7 +64,7 @@ sum((df2$new_deaths),na.rm = TRUE)
 * Revised US COVID19 Deaths: 389,087 by Feb. 1, 2021 (Updated Oct. 15,2020)
 * Revised US COVID19 Deaths: 385,611 by Feb. 1, 2021 (Updated Oct. 22, 2020)
 * Revised US COVID19 Deaths: 399,163 by Feb. 1, 2021 (Updated Oct. 29, 2020)
-* Revised US COVID19 Deaths: 399,163 by Feb. 1, 2021 (Updated Nov. 07, 2020)
+* **Revised US COVID19 Deaths: 399,163 by Feb. 1, 2021 (Updated Nov. 07, 2020)**
 * Revised US COVID19 Deaths: 438,941 by Mar. 1, 2021 (Updated Nov. 14, 2020)
 * Revised US COVID19 Deaths: 470,974 by Mar. 1, 2021 (Updated Nov. 19, 2020)
 * Revised US COVID19 Deaths: 538,893 by Apr. 1, 2021 (Updated Dec. 03, 2020)
@@ -79,7 +79,7 @@ sum((df2$new_deaths),na.rm = TRUE)
 * Nov 1,  2020 = 233,706 : Actual: 229,672
 * Dec.1,  2020 = 261,895 : Actual: 268045 (248800 - 274989)
 * Jan.1,  2021 = 291151  : Range: 276593 - 305708
-* Feb.1, 2020 = 317,482 : Range: 301607 - 333356
+* **Feb.1, 2020 = 317,482 : Range: 301607 - 333356**
 * Mar, 1 2021 = 319,528 (Nov. 14, 2020)
 * Apr. 1, 2020 = 396,154 (Dec. 3, 2020)
 
