@@ -1,7 +1,7 @@
 ---
-title: 'US COVID-19 Prediction: April 1, 2021'
+title: 'US COVID-19 Prediction'
 author: "David Jackson"
-date: "12/05/2020"
+date: "12/19/2020"
 output: 
   html_document: 
     fig_width: 10
@@ -20,23 +20,23 @@ theme_set(theme_linedraw() + theme(panel.grid = element_line(linetype = 'dashed'
 ```{r,echo=FALSE}
 rm(list=ls())
 source("../DATA/movavg.R")
-db <- db <- dbConnect(RSQLite::SQLite(),dbname= "../COVIDDB/COVID.sqlite3")
-jhcum <- dbGetQuery(db,"select * from JHUDATA")
-jhcum$date <- as.Date(jhcum$date)
-jhcum <- jhcum[order(jhcum$date),]
-jhcum <- subset(jhcum,country =="US")
+db <- db <- dbConnect(RSQLite::SQLite(),dbname= "../COVID-19-DB/OURWORLD.sqlite3")
+# jhcum <- dbGetQuery(db,"select * from JHU")
+# jhcum$date <- as.Date($date)
+# jhcum <- jhcum[order(jhcum$date),]
+# jhcum <- subset(jhcum,country =="US")
 
 ```
 
 ```{r, echo=FALSE}
-df2 <- dbGetQuery(db,"select * from JHDEATHS")
-df2$Reported <- lubridate::ymd(df2$YMD)
-#df1$Reported <- as.Date(df1$Reported,format="%Y-%m-%d")
-df2 <- df2[order(df2$Reported),]
+df2 <- dbGetQuery(db,"select * from JHU where location ='United States'")
+df2$date <- lubridate::ymd(df2$date)
+#df1$date <- as.Date(df1$date,format="%Y-%m-%d")
+df2 <- df2[order(df2$date),]
 ## Cum calc
-# df1 <- subset(df1,Countries =="USA" )
-df2$Reported <- as.Date(df2$Reported)
-df2death <- df2 %>% filter(Reported>="2020-02-29") 
+# df2 <- subset(df2,location =="United States" )
+df2$date <- as.Date(df2$date)
+df2death <- df2 %>% filter(date>="2020-02-29") 
 
 ```
 
@@ -47,9 +47,9 @@ df2death <- df2 %>% filter(Reported>="2020-02-29")
 #### Average US Covid-19 Deaths/day
 
 ```{r}
-df2death$MA7 <- movingAverage(df2death$DEATHS,7,centered=TRUE)
-mean((df2$DEATHS),na.rm = TRUE)
-sum((df2$DEATHS),na.rm = TRUE)
+df2death$MA7 <- movingAverage(df2death$new_deaths,7,centered=TRUE)
+mean((df2$new_deaths),na.rm = TRUE)
+sum((df2$new_deaths),na.rm = TRUE)
 ```
 
 ### Washington University
@@ -69,7 +69,7 @@ sum((df2$DEATHS),na.rm = TRUE)
 * Revised US COVID19 Deaths: 470,974 by Mar. 1, 2021 (Updated Nov. 19, 2020)
 * Revised US COVID19 Deaths: 538,893 by Apr. 1, 2021 (Updated Dec. 03, 2020)
 * Revised US COVID19 Deaths: 502,256 by Apr. 1, 2021 (Updated Dec. 10, 2020)
-
+* Revised US COVID19 Deaths: 561,669 by Apr.1, 2021 (Updated Dec. 17, 2020)
 
 #### US COVID-19 Deaths  Guesstimate as of Oct. 17, 2020
 
@@ -80,33 +80,33 @@ sum((df2$DEATHS),na.rm = TRUE)
 * Dec.1,  2020 = 261,895 : Actual: 268045 (248800 - 274989)
 * Jan.1,  2021 = 291151  : Range: 276593 - 305708
 * Feb.1, 2020 = 317,482 : Range: 301607 - 333356
-* Mar, 1 2021 = 319,528 (+/- 5%)(Nov. 14, 2020)
-* Apr. 1, 2020 = 396,154 : Range: 303551- 335504 (Dec. 3, 2020)
+* Mar, 1 2021 = 319,528 (Nov. 14, 2020)
+* Apr. 1, 2020 = 396,154 (Dec. 3, 2020)
 
 ### US COVID19 Projected Deaths
-
-
-#### US COVID19 Projected Deaths for Apr. 1, 2021
+#### Just COVID19 Deaths for Apr. 1, 2021: 561,669
 
 ```{r}
-## 502256 by Apr. 1, 2021
-##
-(502256 - sum(df2death$DEATHS)) / 110  # Apr. 1, 2021
-sum(df2death$DEATHS) + (mean((df2death$DEATHS)) * 110) ## Feb.1 , 2021(389087)
-##
+## 399163 by Feb. 1, 2021
+#
+(561669 - sum(df2death$new_deaths,na.rm = TRUE)) / 104
+sum(df2death$new_deaths,na.rm=TRUE) +  mean(df2death$new_deaths,na.rm = TRUE) *104
 ## 
 ```
+
 ```{r,echo=FALSE}
-ggplot(df2death) +geom_line(aes(x=Reported,y=MA7,col="7 Day MA"),lwd=2) + 
+ggplot(df2death) +geom_line(aes(x=date,y=MA7,col="7 Day MA"),lwd=2) + 
     scale_x_date(date_breaks = "1 month") +
   scale_y_continuous(labels = comma) +
    theme(axis.text.x=element_text(angle =- 45, vjust = 0.5)) +
-  labs(title="US Daily Daily Death by Apr. 1, 2021",
-       subtitle="Daily Avg (Blue:1001);Mar. 1(Green: 1999/538893))"
-       ,x="Date Reported",y="Daily Deaths") +
-  geom_hline(yintercept=1001,lwd=1.5,col="blue") +
-    geom_hline(yintercept=1999,lwd=1.5,col="green")
+  labs(title="US Daily Predicted Deaths: Feb. 1, 2021",
+       subtitle="Daily Avg (blue:1064);Feb 1(Grenn: 2413/561699)"
+       ,x="Date date",y="Daily Deaths") +
+  geom_hline(yintercept=1064,lwd=1.5,col="blue") +
+    geom_hline(yintercept=2413,lwd=1.5,col="green")
+
 
 ```
+
 
 

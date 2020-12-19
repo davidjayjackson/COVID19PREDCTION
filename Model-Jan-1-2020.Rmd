@@ -84,13 +84,13 @@ sum((df2$new_deaths),na.rm = TRUE)
 * Apr. 1, 2020 = 396,154 (Dec. 3, 2020)
 
 ### US COVID19 Projected Deaths
-#### Just COVID19 Deaths for Mar 1, 2021: 470,974
+#### Just COVID19 Deaths for Jan. 1, 2021: 363,269
 
 ```{r}
-## 399163 by Mar. 1, 2021
+## 399163 by Jan. 1, 2021
 #
-(470974 - sum(df2death$new_deaths,na.rm = TRUE)) / 73  # Feb 1, 2021
-sum(df2death$new_deaths,na.rm=TRUE) +  mean(df2death$new_deaths,na.rm = TRUE) *73
+(363269 - sum(df2death$new_deaths,na.rm = TRUE)) / 14  # Feb 1, 2021
+sum(df2death$new_deaths,na.rm=TRUE) +  mean(df2death$new_deaths,na.rm = TRUE) *14
 ## 
 ```
 
@@ -99,11 +99,11 @@ ggplot(df2death) +geom_line(aes(x=date,y=MA7,col="7 Day MA"),lwd=2) +
     scale_x_date(date_breaks = "1 month") +
   scale_y_continuous(labels = comma) +
    theme(axis.text.x=element_text(angle =- 45, vjust = 0.5)) +
-  labs(title="US Daily Predicted Deaths: Feb. 1, 2021",
-       subtitle="Daily Avg (blue:1064);Feb 1(Grenn: 2196/470974)"
+  labs(title="US Daily Predicted Deaths: Jan. 1, 2021",
+       subtitle="Daily Avg (blue:1064);Feb 1(Grenn: 3755/363269)"
        ,x="Date date",y="Daily Deaths") +
   geom_hline(yintercept=1064,lwd=1.5,col="blue") +
-    geom_hline(yintercept=2196,lwd=1.5,col="green")
+    geom_hline(yintercept=3755,lwd=1.5,col="green")
 
 
 ```
