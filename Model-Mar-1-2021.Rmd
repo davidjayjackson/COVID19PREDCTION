@@ -1,7 +1,7 @@
 ---
 title: 'US COVID-19 Prediction'
 author: "David Jackson"
-date: "12/26/2020 05:15 PM EST"
+date: "12/26/2020 08:30 PM EST"
 output: 
   html_document: 
     fig_width: 10
@@ -54,7 +54,7 @@ sum((df2$new_deaths),na.rm = TRUE)
 
 ### Washington University
 #### Institute for Health Metrics and Evaluation 
-On Oct 10, 2020 Washington University IHME projected 363,269 US Covid19 by April 1, 2020.Would a projection  that is within  +/- 10%   still be valid?
+On Oct 10, 2020 Washington University IHME projected 363,269 US Covid19 by April 1, 2021.Would a projection  that is within  +/- 10%   still be valid?
 
 On Dec. 21, 2020 August Comte replied,
 "Quiet simply yes. However, without providing further  information its hard to say if the modeling is any good compared to other available modeling techniques. 10% (confidence interval) in variation is generally decent for predicting three months into the future. (edited) "
@@ -105,10 +105,10 @@ ggplot(df2death) +geom_line(aes(x=date,y=MA7,col="7 Day MA"),lwd=2) +
   scale_y_continuous(labels = comma) +
    theme(axis.text.x=element_text(angle =- 45, vjust = 0.5)) +
   labs(title="US Daily Predicted Deaths: Mar. 1, 2021",
-       subtitle="Daily Avg (blue:1064);Apr 1(Grenn: 2196/470974)"
+       subtitle="Daily Avg (blue:1096);Apr 1(Grenn: 2150/470974)"
        ,x="Date date",y="Daily Deaths") +
-  geom_hline(yintercept=1064,lwd=1.5,col="blue") +
-    geom_hline(yintercept=2196,lwd=1.5,col="green")
+  geom_hline(yintercept=1096,lwd=1.5,col="blue") +
+    geom_hline(yintercept=2150,lwd=1.5,col="green")
 
 
 ```

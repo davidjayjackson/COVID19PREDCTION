@@ -1,7 +1,7 @@
 ---
 title: 'US COVID-19 Prediction'
 author: "David Jackson"
-date: "12/19/2020"
+date: "12/26/2020 9:45PM EST"
 output: 
   html_document: 
     fig_width: 10
@@ -54,6 +54,11 @@ sum((df2$new_deaths),na.rm = TRUE)
 
 ### Washington University
 #### Institute for Health Metrics and Evaluation
+On Oct 10, 2020 Washington University IHME projected 363,269 US Covid19 by April 1, 2021.Would a projection  that is within  +/- 10%   still be valid?
+
+On Dec. 21, 2020 August Comte replied,
+"Quiet simply yes. However, without providing further  information its hard to say if the modeling is any good compared to other available modeling techniques. 10% (confidence interval) in variation is generally decent for predicting three months into the future. (edited) "
+
 * "Daily deaths is the best indicator of the progression of the pandemic, although there is generally a 17-21 day lag between infection and deaths.
 
 * Revised US COVID19 Deaths: 300,000 by Dec. 1, 2021 (Updated Aug. 6, 2020)
@@ -89,8 +94,8 @@ sum((df2$new_deaths),na.rm = TRUE)
 ```{r}
 ## 399163 by Feb. 1, 2021
 #
-(561669 - sum(df2death$new_deaths,na.rm = TRUE)) / 104
-sum(df2death$new_deaths,na.rm=TRUE) +  mean(df2death$new_deaths,na.rm = TRUE) *104
+(561669 - sum(df2death$new_deaths,na.rm = TRUE)) / 66
+sum(df2death$new_deaths,na.rm=TRUE) +  mean(df2death$new_deaths,na.rm = TRUE) *66
 ## 
 ```
 
@@ -100,10 +105,10 @@ ggplot(df2death) +geom_line(aes(x=date,y=MA7,col="7 Day MA"),lwd=2) +
   scale_y_continuous(labels = comma) +
    theme(axis.text.x=element_text(angle =- 45, vjust = 0.5)) +
   labs(title="US Daily Predicted Deaths: Apr. 1, 2021",
-       subtitle="Daily Avg (blue:1064);Apr 1(Grenn: 2413/561699)"
+       subtitle="Daily Avg (blue:1096);Apr 1(Green: 3528/561699)"
        ,x="Date date",y="Daily Deaths") +
-  geom_hline(yintercept=1064,lwd=1.5,col="blue") +
-    geom_hline(yintercept=2413,lwd=1.5,col="green")
+  geom_hline(yintercept=1096,lwd=1.5,col="blue") +
+    geom_hline(yintercept=3528,lwd=1.5,col="green")
 
 
 ```
