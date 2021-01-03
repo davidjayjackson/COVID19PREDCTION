@@ -1,7 +1,7 @@
 ---
 title: 'US COVID-19 Prediction'
 author: "David Jackson"
-date: "12/25/2020 5:05PM/EST"
+date: "01/03/2020 5:15PM/EST"
 output: 
   html_document: 
     fig_width: 10
@@ -21,10 +21,7 @@ theme_set(theme_linedraw() + theme(panel.grid = element_line(linetype = 'dashed'
 rm(list=ls())
 source("../DATA/movavg.R")
 db <- db <- dbConnect(RSQLite::SQLite(),dbname= "../COVID-19-DB/OURWORLD.sqlite3")
-# jhcum <- dbGetQuery(db,"select * from JHU")
-# jhcum$date <- as.Date($date)
-# jhcum <- jhcum[order(jhcum$date),]
-# jhcum <- subset(jhcum,country =="US")
+
 
 ```
 
@@ -36,7 +33,7 @@ df2 <- df2[order(df2$date),]
 ## Cum calc
 # df2 <- subset(df2,location =="United States" )
 df2$date <- as.Date(df2$date)
-df2death <- df2 %>% filter(date>="2020-02-29") 
+df2death <- df2 %>% filter(date>="2020-02-29" & date <="2020-12-31") 
 
 ```
 
@@ -93,8 +90,8 @@ On Dec. 21, 2020 August Comte replied,
 ```{r}
 ## 399163 by Feb. 1, 2021
 #
-(399163 - sum(df2death$new_deaths,na.rm = TRUE)) / 38  # Feb 1, 2021
-sum(df2death$new_deaths,na.rm=TRUE) +  mean(df2death$new_deaths,na.rm = TRUE) *38
+(399163 - sum(df2death$new_deaths,na.rm = TRUE)) / 30  # Feb 1, 2021
+sum(df2death$new_deaths,na.rm=TRUE) +  mean(df2death$new_deaths,na.rm = TRUE) *30
 
 ## 
 ```
@@ -105,10 +102,10 @@ ggplot(df2death) +geom_line(aes(x=date,y=MA7,col="7 Day MA"),lwd=2) +
   scale_y_continuous(labels = comma) +
    theme(axis.text.x=element_text(angle =- 45, vjust = 0.5)) +
   labs(title="US Daily Predicted Deaths: Feb. 1, 2021",
-       subtitle="Daily Avg (blue:1096);Feb 1(Grenn: 1845/399163)"
+       subtitle="Daily Avg (blue:1133);Feb 1(Grenn: 1780/399163)"
        ,x="Date date",y="Daily Deaths") +
-  geom_hline(yintercept=1096,lwd=1.5,col="blue") +
-    geom_hline(yintercept=1845,lwd=1.5,col="green")
+  geom_hline(yintercept=1133,lw=1.5,col="blue") +
+    geom_hline(yintercept=1780,lwd=1.5,col="green")
 
 
 ```

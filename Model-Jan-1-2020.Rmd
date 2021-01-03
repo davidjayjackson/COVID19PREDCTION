@@ -36,7 +36,7 @@ df2 <- df2[order(df2$date),]
 ## Cum calc
 # df2 <- subset(df2,location =="United States" )
 df2$date <- as.Date(df2$date)
-df2death <- df2 %>% filter(date>="2020-02-29") 
+df2death <- df2 %>% filter(date>="2020-02-29" & date <="2020-12-31") 
 
 ```
 
